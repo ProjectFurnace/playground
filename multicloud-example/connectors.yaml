@@ -1,15 +1,1 @@
-- name: salesforce-connector
-  type: ActiveConnector
-  config:
-    input:
-      name: salesforce
-      options:
-        credentials:
-          loginUrl: <replace-with-login-url>
-          username: <replace-with-username>
-          password: <replace-with-password>
-          securityToken: <replace-with-security-token>
-        subscribe:
-          loginEvent: true
-    output:
-      source: ${input-stream.name}
+
