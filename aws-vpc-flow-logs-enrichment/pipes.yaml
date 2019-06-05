@@ -1,0 +1,10 @@
+
+- tap: flowlogs
+  pipeline: enrichment
+
+- pipeline: enrichment
+  sink: es
+
+- pipeline: enrichment
+  sink: redshift
+

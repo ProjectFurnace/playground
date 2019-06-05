@@ -1,0 +1,4 @@
+- name: enrichment
+  modules:
+    - name: flatten
+      module: enrc-flatten

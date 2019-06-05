@@ -1,0 +1,5 @@
+- name: datalaketable
+  type: Table
+  config:
+    primaryKey: "Id"
+    primaryKeyType: "string"

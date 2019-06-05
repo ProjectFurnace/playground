@@ -1,0 +1,6 @@
+- name: datalake
+  module: tablesink
+  config:
+    table: datalaketable
+    az_pk: Id
+

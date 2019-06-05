@@ -1,0 +1,15 @@
+id: slackbot-alerter
+version: 1.0.0
+runtime: python3.6
+category: tap
+core-version:
+  min: 0.1.0
+  max: 0.3.1
+meta:
+  name: Alerting Slack Bot  
+  description: This module is used to send notifications to Slack.
+  keywords: [alerting, slack]
+  website: https://furnace.org
+author: dave@furnace.org
+name: Furnace Collective
+license: MIT

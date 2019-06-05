@@ -1,0 +1,5 @@
+- name: datalaketable
+  type: Table
+  config:
+    primaryKey: "data_LoginHistoryId"
+    primaryKeyType: "string"

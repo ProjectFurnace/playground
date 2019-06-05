@@ -1,0 +1,4 @@
+- name: enrichment
+  modules:
+    - name: slack-bot
+      module: slackbot-alerter

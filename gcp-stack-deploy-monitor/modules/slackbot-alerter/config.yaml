@@ -1,0 +1,10 @@
+config-groups:
+  default:
+    slack_webhook_url:
+      label: Slack Webhook Url
+      mandatory: true
+      type: single
+      default: ''
+      visible: true
+      validator: '[A-z0-9\._]+'
+      help: The url of the Slack webhook.

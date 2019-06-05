@@ -1,0 +1,9 @@
+- from:
+    tap: input-tap
+  to:
+    pipeline: enrichment
+
+- from:
+    pipeline: enrichment
+  to:
+    sink: datalake

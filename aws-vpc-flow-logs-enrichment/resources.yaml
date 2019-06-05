@@ -1,0 +1,18 @@
+- name: es
+  type: elasticsearch.Domain
+  config:
+    elasticsearchVersion: '6.3'
+    ebsOptions:
+      ebsEnabled: true
+      volumeSize: 10
+    clusterConfig:
+      instanceType: 't2.small.elasticsearch'
+
+- name: redshift
+  type: redshift.Cluster
+  config:
+    nodeType: 'dc2.large'
+    clusterType: 'single-node'
+    databaseName: "furnace"
+    masterUsername: "master"
+    masterPasswordSecret: "aws-fl-rs"
