@@ -1,10 +1,16 @@
 
-- tap: flowlogs
-  pipeline: enrichment
+- from:
+    tap: flowlogs
+  to:
+    pipeline: enrichment
 
-- pipeline: enrichment
-  sink: es
+- from:
+    pipeline: enrichment
+  to:
+    sink: es
 
-- pipeline: enrichment
-  sink: redshift
+- from:
+    pipeline: enrichment
+  to:
+    sink: redshift
 
