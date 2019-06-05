@@ -39,12 +39,9 @@ A sample stack to consume messages from AWS VPC Flow Logs, enrich them with secu
 
 Once the stack has built you will need to stream the VPC Flow Logs from Cloud Watch to the Tap.
 
-1. Go into the AWS Console and select `CloudWatch`
-2. Select the `Logs` menu item on the right and select your VPC Flow Logs Log Group with the radio button.  
-3. Under `Actions` dropdown at the top select Stream to AWS Lambda  
-4. Select the Tap lambda function and hit `Next` (it will be named something like `aws-vpcfl-flowlogs-dev`)
-5. Select `AWS VPC Flow Logs` for the Log Format then hit `Next`
-6. Check all the details then hit `Start Streaming`
+1. Follow the steps outlined here [https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/SubscriptionFilters.html](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/SubscriptionFilters.html) to add a subscription to the Source.  You'll want to follow the steps for "Creating a subscription to Kinesis" 
+2. For the `Subscription Filter` you will want to use something like `[version, account_id, interface_id, srcaddr, dstaddr, srcport, dstport, protocol, packets, bytes, start, end, action, log_status]`
+
 
 After a while you should start to see logs being indexed in the Elastic Search instance that was created.
 
