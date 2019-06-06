@@ -9,7 +9,6 @@ A sample stack to consume messages from AWS VPC Flow Logs, enrich them with secu
 
 ## Sinks
 - ElasticSearch
-- Amazon RedShift
 
 ## Modules
 - aws-vpcfl
