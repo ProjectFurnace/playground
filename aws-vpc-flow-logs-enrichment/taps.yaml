@@ -1,6 +1,6 @@
-- name: flowlogs
+- name: flowlogs-tap
   module: aws-vpcfl
-  source: flowlogs
+  source: flowlogs-source
   aws:
     shards: 1
   config:

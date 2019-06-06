@@ -1,18 +1,58 @@
-- name: es
-  type: elasticsearch.Domain
+- name: elasticsearch
+  type: aws.elasticsearch.Domain
   config:
-    elasticsearchVersion: '6.3'
+    elasticsearchVersion: "6.5"
     ebsOptions:
       ebsEnabled: true
       volumeSize: 10
     clusterConfig:
-      instanceType: 't2.small.elasticsearch'
+      instanceType: t2.small.elasticsearch
 
-- name: redshift
-  type: redshift.Cluster
+- name: elasticRole
+  type: aws.iam.Role
   config:
-    nodeType: 'dc2.large'
-    clusterType: 'single-node'
-    databaseName: "furnace"
-    masterUsername: "master"
-    masterPasswordSecret: "aws-fl-rs"
+    assumeRolePolicy:
+      Version: "2012-10-17"
+      Statement:
+        - Action: sts:AssumeRole
+          Principal:
+            Service:
+              - firehose.amazonaws.com
+          Effect: Allow
+          Sid: ""
+
+- name: elasticPolicy
+  type: aws.iam.RolePolicy
+  config:
+    policy: 
+      Version: "2012-10-17"
+      Statement:
+        - Action:
+            - s3:AbortMultipartUpload
+            - s3:GetBucketLocation
+            - s3:GetObject
+            - s3:ListBucket
+            - s3:ListBucketMultipartUploads
+            - s3:PutObject
+          Effect: Allow
+          Resource:
+            - arn:aws:s3:::*/*
+        - Action:
+            - kinesis:DescribeStream
+            - kinesis:GetShardIterator
+            - kinesis:GetRecords
+          Effect: Allow
+          Resource:
+            - arn:aws:kinesis:${global:stack.region}:${global:account.id}:stream/${global:stack.name}-enrichment-out-${global:stack.environment}
+        - Action:
+            - es:DescribeElasticsearchDomain
+            - es:DescribeElasticsearchDomains
+            - es:DescribeElasticsearchDomainConfig
+            - es:ESHttpGet
+            - es:ESHttpPost
+            - es:ESHttpPut
+          Effect: Allow
+          Resource:
+            - ${elasticsearch.arn}
+            - ${elasticsearch.arn}/*
+    role: ${elasticRole.id}

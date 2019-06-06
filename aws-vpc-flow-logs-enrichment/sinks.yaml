@@ -1,18 +1,18 @@
-- name: es
-  type: AwsFirehose
-  resource: es
-  aws:
+- name: elastic-sink
+  type: aws.kinesis.FirehoseDeliveryStream
+  config:
     destination: elasticsearch
+    kinesisSourceConfiguration:
+      kinesisStreamArn: arn:aws:kinesis:${global:stack.region}:${global:account.id}:stream/${global:stack.name}-enrichment-out-${global:stack.environment}
+      roleArn: ${elasticRole.arn}
     elasticsearchConfiguration:
-        indexName: 'furnace'
-        typeName: 'furnace'
-
-- name: redshift
-  type: AwsFirehose
-  resource: redshift
-  aws:
-    destination: redshift
-    redshiftConfiguration:
-      dataTableName: 'furnace'
-      username: 'master'
-
+      domainArn: ${elasticsearch.arn}
+      indexName: test_index
+      typeName: test_type
+      roleArn: ${elasticRole.arn}
+    s3Configuration:
+        bucketArn: arn:aws:s3:::furnace-vpcfl-failed-events
+        bufferInterval: 400
+        bufferSize: 10
+        compressionFormat: "GZIP"
+        roleArn: ${elasticRole.arn}

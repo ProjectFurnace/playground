@@ -2,7 +2,7 @@
 
 # AWS VPC FlowLogs Security Example Stack
 
-A sample stack to consume messages from AWS VPC Flow Logs, enrich them with security focused information and store them in both ElasticSearch, and AWS RedShift.
+A sample stack to consume messages from AWS VPC Flow Logs, enrich them with security focused information and store them in ElasticSearch.
 
 ## Sources
 - AWS VPC Flow Logs

@@ -1,0 +1,9 @@
+name: awsvpcfl
+platform:
+    aws: {defaultBatchSize: 10}
+state:
+    repo: 'https://github.com/DeathsPirate/awsvpcfl-state'
+environments:
+    - dev
+    - staging
+    - prod

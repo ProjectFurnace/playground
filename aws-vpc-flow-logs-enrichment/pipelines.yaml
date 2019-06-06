@@ -1,14 +1,14 @@
 
 - name: enrichment
   modules:
-    - name: geo
-      module: lookup-geo
     - name: securitygroup
       module: aws-lookup-sg
+      policies: 
+        - AmazonEC2ReadOnlyAccess
     - name: port
       module: lookup-port
     - name: protocol
       module: lookup-protocol
     - name: flatten
       module: enrc-flatten
-
+      
